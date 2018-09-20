@@ -1,0 +1,44 @@
+{% extends 'base.twig' %}
+
+{% block title %}Desafio PHP - Escolha Produtos{% endblock title %}
+
+{% block content %}
+    <h1>Escolha de produtos</h1>
+    <a href="{{ path_for('vendas-listar')}}" class="btn btn-primary">Finalizar Venda</a>
+    <form method="post" action="{{ path_for('vendas-escolhaprodutos') }}">
+        <div class="form-group">
+            <label for="idproduto">Produto:</label>
+            <select class="form-control" id="idproduto" name="idproduto">
+                {% for produto in produtos %}
+                    <option value="{{ produto.idproduto }}">{{ produto.produto }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="qtd">Qtd:</label>
+            <input type="number" class="form-control" id="qtd" name="qtd">
+        </div>
+        <div class="form-group">
+            <label for="preco">Preço:</label>
+            <input type="number" min="1" step="any" class="form-control" id="preco" name="preco">
+        </div>
+        <div class="form-group">
+            <label for="precopago">Preço Pago:</label>
+            <input type="number" min="1" step="any" class="form-control" id="precopago" name="precopago">
+        </div>
+        <input type="hidden" value="{{ pedido.idvenda }}" id="idvenda" name="idvenda">
+        <button type="submit" class="btn btn-primary">Adicionar Produto</button>
+        <h2>Produtos Inclusos</h2>
+        <ul class="list-group">
+            {% if produtos_incluidos|length > 0 %}
+                {% for incluido in produtos_incluidos %}
+                    <li class="list-group-item">
+                        {{ incluido.idproduto }} - {{ incluido.qtd }}x R$ {{ incluido.preco }}
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li class="list-group-item">Não existem produtos inclusos...</li>
+            {% endif %}
+        </ul>
+    </form>
+{% endblock content %}

@@ -7,6 +7,7 @@ use App\Model\Cliente;
 use App\Model\Categoria;
 use App\Model\Produto;
 use App\Model\Venda;
+use App\Model\VendaItem;
 
 // Routes
 
@@ -103,17 +104,40 @@ $app->get('/vendas/escolhacliente/{id_cliente}', function(Request $request, Resp
     $venda->status = 'A';
     $venda->idusuario = 1;
     $venda->save();
-    //var_dump($venda->idvenda);
-    //die();
     return $this->response->withRedirect($this->router->pathFor(
         'vendas-formescolhaprodutos', ['id_pedido' => $venda->idvenda ]
     ));
 })->setName('vendas-escolhacliente');
 
 $app->get('/vendas/formescolhaproduto/{id_pedido}', function(Request $request, Response $response, array $args) {
-    return $this->view->render($response, 'vendas-formcadastro-escolhaprodutos.twig');
+    $allProdutos = Produto::all();
+    $resultProdutos = new ModelResult($allProdutos);
+    $twigVar['produtos'] = $resultProdutos->toArray();
+
+    $produtosIncluidos = VendaItem::all(
+        array('conditions' => array('idvenda = ?',$args['id_pedido']))
+    );
+    $resultProdutosIncluidos = new ModelResult($produtosIncluidos);
+    $twigVar['produtos_incluidos'] = $resultProdutosIncluidos->toArray();
+    
+    $twigVar['pedido']['idvenda'] = $args['id_pedido'];
+
+    return $this->view->render($response, 'vendas-formcadastro-escolhaprodutos.twig', $twigVar);
 })->setName('vendas-formescolhaprodutos');
 
 $app->post('/vendas/escolhaproduto', function(Request $request, Response $response, array $args) {
+    $postData = $request->getParams();
+    
+    $itemVenda = new VendaItem();
+    $itemVenda->idproduto = $postData['idproduto'];
+    $itemVenda->qtd = $postData['qtd'];
+    $itemVenda->preco = $postData['preco'];
+    $itemVenda->precopago = $postData['precopago'];
+    $itemVenda->idvenda = $postData['idvenda'];
 
+    $itemVenda->save();
+
+    return $this->response->withredirect(
+        $this->router->pathFor('vendas-formescolhaprodutos', ['id_pedido' => $postData['idvenda']])
+    );
 })->setName('vendas-escolhaprodutos');
