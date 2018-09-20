@@ -46,14 +46,29 @@ class __TwigTemplate_119ee515e583acd3b61ed01a17b32fc8e5feec8e194743c7cb47b19318b
         </div>
         <div class=\"form-group\">
             <label for=\"preco\">Preço:</label>
-            <input type=\"number\" class=\"form-control\" id=\"preco\" name=\"preco\">
+            <input type=\"number\" min=\"1\" step=\"any\" class=\"form-control\" id=\"preco\" name=\"preco\">
         </div>
         <div class=\"form-group\">
             <label for=\"id_categoria\">Categoria:</label>
             <select class=\"form-control\" id=\"id_categoria\" name=\"id_categoria\">
-                <option value=\"1\">Eletronicos</option>
-                <option value=\"2\">Outros</option>
-            </select>
+                ";
+        // line 19
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["categorias"]) ? $context["categorias"] : null));
+        foreach ($context['_seq'] as $context["_key"] => $context["categoria"]) {
+            // line 20
+            echo "                    <option value=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["categoria"], "idcategoria", array()), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["categoria"], "categoria", array()), "html", null, true);
+            echo "</option>
+                ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['categoria'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 22
+        echo "            </select>
         </div>
         <div class=\"form-group\">
             <label for=\"saldo\">Saldo:</label>
@@ -76,7 +91,7 @@ class __TwigTemplate_119ee515e583acd3b61ed01a17b32fc8e5feec8e194743c7cb47b19318b
 
     public function getDebugInfo()
     {
-        return array (  41 => 7,  38 => 6,  35 => 5,  29 => 3,  11 => 1,);
+        return array (  71 => 22,  60 => 20,  56 => 19,  41 => 7,  38 => 6,  35 => 5,  29 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -102,13 +117,14 @@ class __TwigTemplate_119ee515e583acd3b61ed01a17b32fc8e5feec8e194743c7cb47b19318b
         </div>
         <div class=\"form-group\">
             <label for=\"preco\">Preço:</label>
-            <input type=\"number\" class=\"form-control\" id=\"preco\" name=\"preco\">
+            <input type=\"number\" min=\"1\" step=\"any\" class=\"form-control\" id=\"preco\" name=\"preco\">
         </div>
         <div class=\"form-group\">
             <label for=\"id_categoria\">Categoria:</label>
             <select class=\"form-control\" id=\"id_categoria\" name=\"id_categoria\">
-                <option value=\"1\">Eletronicos</option>
-                <option value=\"2\">Outros</option>
+                {% for categoria in categorias %}
+                    <option value=\"{{ categoria.idcategoria }}\">{{ categoria.categoria }}</option>
+                {% endfor %}
             </select>
         </div>
         <div class=\"form-group\">

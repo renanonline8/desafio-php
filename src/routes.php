@@ -62,9 +62,22 @@ $app->get('/produtos/listar', function(Request $request, Response $response, arr
 })->setName('produtos-listar');
 
 $app->get('/produtos/formcadastro', function(Request $request, Response $response, array $args) {
-    return $this->view->render($response, 'produtos-form-cadastro.twig');
+    $allCategoria = Categoria::all();
+    $resultCategoria = new ModelResult($allCategoria);
+    $twigVar = ['categorias' => $resultCategoria->toArray()];
+    return $this->view->render($response, 'produtos-form-cadastro.twig', $twigVar);
 })->setName('produtos-formcadastro');
 
 $app->post('/produtos/cadastrar', function(Request $request, Response $response, array $args) {
-    return $this->response->withJson($request->getParams());
+    $v = $request->getParams();
+    
+    $produto = new Produto();
+    $produto->produto = $v['produto'];
+    $produto->preco = $v['preco'];
+    $produto->idcategoria = $v['id_categoria'];
+    $produto->saldo = $v['saldo'];
+    $produto->save();
+
+    return $this->response->withRedirect($this->router->pathFor('produtos-listar')); 
+    //return $this->response->withJson($request->getParams());
 })->setName('produtos-cadastrar');
