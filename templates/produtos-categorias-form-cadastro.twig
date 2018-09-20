@@ -1,0 +1,14 @@
+{% extends 'base.twig' %}
+
+{% block title %}Desafio PHP - Cadastro de Categoria de Produtos{% endblock title %}
+
+{% block content %}
+    <h1>Cadastro de Categoria de Produtos</h1>
+    <form method="post" action="{{ path_for('produtos-categorias-cadastrar') }}">
+        <div class="form-group">
+            <label for="categoria">Nome:</label>
+            <input type="text" class="form-control" id="categoria" name="categoria">
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+{% endblock content %}

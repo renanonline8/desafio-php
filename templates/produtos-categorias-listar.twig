@@ -1,14 +1,14 @@
 {% extends "base.twig" %}
 
-{% block title %}Desafio PHP - Listar Clientes{% endblock title %}
+{% block title %}Desafio PHP - Listar Categorias de Produtos{% endblock title %}
 
 {% block content %}
 <h2>Lista de categorias de produtos</h2>
-<a class="btn btn-primary" href="{{ path_for('clientes-cadastro') }}">Cadastrar</a>
+<a class="btn btn-primary" href="{{ path_for('produtos-categorias-form-cadastro') }}">Cadastrar</a>
 <ul class="list-group">
     {% if categorias|length > 0 %}
         {% for categoria in categorias %}
-            <li class="list-group-item">{{ categoria.nome }}</li>
+            <li class="list-group-item">{{ categoria.categoria }}</li>
         {% endfor %}
     {% else %}
         <li class="list-group-item">Não existem categorias cadastradas...</li>

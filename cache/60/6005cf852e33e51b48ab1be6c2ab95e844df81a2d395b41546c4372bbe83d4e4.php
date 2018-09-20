@@ -28,7 +28,7 @@ class __TwigTemplate_19060b1ab698f56c4baa062436d4c141440e71758cee0cd98b87547a82c
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        echo "Desafio PHP - Listar Clientes";
+        echo "Desafio PHP - Listar Categorias de Produtos";
     }
 
     // line 5
@@ -38,7 +38,7 @@ class __TwigTemplate_19060b1ab698f56c4baa062436d4c141440e71758cee0cd98b87547a82c
         echo "<h2>Lista de categorias de produtos</h2>
 <a class=\"btn btn-primary\" href=\"";
         // line 7
-        echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("clientes-cadastro"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("produtos-categorias-form-cadastro"), "html", null, true);
         echo "\">Cadastrar</a>
 <ul class=\"list-group\">
     ";
@@ -51,7 +51,7 @@ class __TwigTemplate_19060b1ab698f56c4baa062436d4c141440e71758cee0cd98b87547a82c
             foreach ($context['_seq'] as $context["_key"] => $context["categoria"]) {
                 // line 11
                 echo "            <li class=\"list-group-item\">";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["categoria"], "nome", array()), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute($context["categoria"], "categoria", array()), "html", null, true);
                 echo "</li>
         ";
             }
@@ -97,15 +97,15 @@ class __TwigTemplate_19060b1ab698f56c4baa062436d4c141440e71758cee0cd98b87547a82c
     {
         return new Twig_Source("{% extends \"base.twig\" %}
 
-{% block title %}Desafio PHP - Listar Clientes{% endblock title %}
+{% block title %}Desafio PHP - Listar Categorias de Produtos{% endblock title %}
 
 {% block content %}
 <h2>Lista de categorias de produtos</h2>
-<a class=\"btn btn-primary\" href=\"{{ path_for('clientes-cadastro') }}\">Cadastrar</a>
+<a class=\"btn btn-primary\" href=\"{{ path_for('produtos-categorias-form-cadastro') }}\">Cadastrar</a>
 <ul class=\"list-group\">
     {% if categorias|length > 0 %}
         {% for categoria in categorias %}
-            <li class=\"list-group-item\">{{ categoria.nome }}</li>
+            <li class=\"list-group-item\">{{ categoria.categoria }}</li>
         {% endfor %}
     {% else %}
         <li class=\"list-group-item\">Não existem categorias cadastradas...</li>

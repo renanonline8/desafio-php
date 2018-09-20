@@ -45,10 +45,15 @@ $app->get('/produtos/categorias/listar', function(Request $request, Response $re
     return $this->view->render($response, 'produtos-categorias-listar.twig', $array);
 })->setName('produtos-categorias-listar');
 
-$app->get('/produtos/categorias/cadastro', function(Request $request, Response $response, array $args) {
+$app->get('/produtos/categorias/formcadastro', function(Request $request, Response $response, array $args) {
+    return $this->view->render($response, 'produtos-categorias-form-cadastro.twig');
+})->setName('produtos-categorias-form-cadastro');
 
-});
+$app->post('/produtos/categorias/cadastrar', function(Request $request, Response $response, array $args) {
+    $categoriasProdutos = new Categoria();
+    $categoriasProdutos->categoria = $request->getParam('categoria');
+    $categoriasProdutos->status = 'S';
+    $categoriasProdutos->save();
 
-$app->post('/produtos/categorias/cadastro/enviar', function(Request $request, Response $response, array $args) {
-
-});
+    return $this->response->withRedirect($this->router->pathFor('produtos-categorias-listar'));
+})->setName('produtos-categorias-cadastrar');
