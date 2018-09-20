@@ -11,8 +11,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ path_for('clientes-listar') }}">Clientes</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Produtos</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropProdutos" 
+                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Produtos
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropProdutos">
+                    <a class="dropdown-item disabled" href="#">Produtos</a>
+                    <a class="dropdown-item" href=" {{ path_for('produtos-categorias-listar') }}">Categorias</a>
+                </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#">Vendas</a>

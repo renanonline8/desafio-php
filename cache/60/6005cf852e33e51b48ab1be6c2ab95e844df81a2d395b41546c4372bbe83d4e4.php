@@ -1,14 +1,14 @@
 <?php
 
-/* clientes-listar.twig */
-class __TwigTemplate_ab575dad7c6c6b66bb179c5cafac6a570b6e3aa9bd100b8d2c76fe63e7cd0d13 extends Twig_Template
+/* produtos-categorias-listar.twig */
+class __TwigTemplate_19060b1ab698f56c4baa062436d4c141440e71758cee0cd98b87547a82c70342 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
         parent::__construct($env);
 
         // line 1
-        $this->parent = $this->loadTemplate("base.twig", "clientes-listar.twig", 1);
+        $this->parent = $this->loadTemplate("base.twig", "produtos-categorias-listar.twig", 1);
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'content' => array($this, 'block_content'),
@@ -35,28 +35,28 @@ class __TwigTemplate_ab575dad7c6c6b66bb179c5cafac6a570b6e3aa9bd100b8d2c76fe63e7c
     public function block_content($context, array $blocks = array())
     {
         // line 6
-        echo "<h2>Lista de clientes</h2>
+        echo "<h2>Lista de categorias de produtos</h2>
 <a class=\"btn btn-primary\" href=\"";
         // line 7
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("clientes-cadastro"), "html", null, true);
-        echo "\">Cadastrar Cliente</a>
+        echo "\">Cadastrar</a>
 <ul class=\"list-group\">
     ";
         // line 9
-        if ((twig_length_filter($this->env, (isset($context["clientes"]) ? $context["clientes"] : null)) > 0)) {
+        if ((twig_length_filter($this->env, (isset($context["categorias"]) ? $context["categorias"] : null)) > 0)) {
             // line 10
             echo "        ";
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["clientes"]) ? $context["clientes"] : null));
-            foreach ($context['_seq'] as $context["_key"] => $context["cliente"]) {
+            $context['_seq'] = twig_ensure_traversable((isset($context["categorias"]) ? $context["categorias"] : null));
+            foreach ($context['_seq'] as $context["_key"] => $context["categoria"]) {
                 // line 11
                 echo "            <li class=\"list-group-item\">";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["cliente"], "nome", array()), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute($context["categoria"], "nome", array()), "html", null, true);
                 echo "</li>
         ";
             }
             $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cliente'], $context['_parent'], $context['loop']);
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['categoria'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
             // line 13
             echo "    ";
@@ -72,7 +72,7 @@ class __TwigTemplate_ab575dad7c6c6b66bb179c5cafac6a570b6e3aa9bd100b8d2c76fe63e7c
 
     public function getTemplateName()
     {
-        return "clientes-listar.twig";
+        return "produtos-categorias-listar.twig";
     }
 
     public function isTraitable()
@@ -100,17 +100,17 @@ class __TwigTemplate_ab575dad7c6c6b66bb179c5cafac6a570b6e3aa9bd100b8d2c76fe63e7c
 {% block title %}Desafio PHP - Listar Clientes{% endblock title %}
 
 {% block content %}
-<h2>Lista de clientes</h2>
-<a class=\"btn btn-primary\" href=\"{{ path_for('clientes-cadastro') }}\">Cadastrar Cliente</a>
+<h2>Lista de categorias de produtos</h2>
+<a class=\"btn btn-primary\" href=\"{{ path_for('clientes-cadastro') }}\">Cadastrar</a>
 <ul class=\"list-group\">
-    {% if clientes|length > 0 %}
-        {% for cliente in clientes %}
-            <li class=\"list-group-item\">{{ cliente.nome }}</li>
+    {% if categorias|length > 0 %}
+        {% for categoria in categorias %}
+            <li class=\"list-group-item\">{{ categoria.nome }}</li>
         {% endfor %}
     {% else %}
         <li class=\"list-group-item\">Não existem categorias cadastradas...</li>
     {% endif %}
 </ul>
-{% endblock content %}", "clientes-listar.twig", "C:\\xampp5_6\\htdocs\\desafio-php\\templates\\clientes-listar.twig");
+{% endblock content %}", "produtos-categorias-listar.twig", "C:\\xampp5_6\\htdocs\\desafio-php\\templates\\produtos-categorias-listar.twig");
     }
 }

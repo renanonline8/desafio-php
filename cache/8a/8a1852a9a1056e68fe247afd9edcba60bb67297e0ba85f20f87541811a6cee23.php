@@ -40,8 +40,18 @@ class __TwigTemplate_3f071f8647b64fad9cb0107a5eb2a094dc8b30bb3411bbc3b1f071f12ec
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("clientes-listar"), "html", null, true);
         echo "\">Clientes</a>
             </li>
-            <li class=\"nav-item\">
-                <a class=\"nav-link disabled\" href=\"#\">Produtos</a>
+            <li class=\"nav-item dropdown\">
+                <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"dropProdutos\" 
+                role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
+                    Produtos
+                </a>
+                <div class=\"dropdown-menu\" aria-labelledby=\"dropProdutos\">
+                    <a class=\"dropdown-item disabled\" href=\"#\">Produtos</a>
+                    <a class=\"dropdown-item\" href=\" ";
+        // line 21
+        echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("produtos-categorias-listar"), "html", null, true);
+        echo "\">Categorias</a>
+                </div>
             </li>
             <li class=\"nav-item\">
                 <a class=\"nav-link disabled\" href=\"#\">Vendas</a>
@@ -51,9 +61,9 @@ class __TwigTemplate_3f071f8647b64fad9cb0107a5eb2a094dc8b30bb3411bbc3b1f071f12ec
 
     <div class=\"container\">
         ";
-        // line 24
+        // line 31
         $this->displayBlock('content', $context, $blocks);
-        // line 25
+        // line 32
         echo "    </div>
     <div class=\"container-fluid fixed-bottom bg-primary text-center text-white\">
         <span>Renan Santos Gomes</span>
@@ -70,7 +80,7 @@ class __TwigTemplate_3f071f8647b64fad9cb0107a5eb2a094dc8b30bb3411bbc3b1f071f12ec
     {
     }
 
-    // line 24
+    // line 31
     public function block_content($context, array $blocks = array())
     {
     }
@@ -87,7 +97,7 @@ class __TwigTemplate_3f071f8647b64fad9cb0107a5eb2a094dc8b30bb3411bbc3b1f071f12ec
 
     public function getDebugInfo()
     {
-        return array (  74 => 24,  69 => 4,  57 => 25,  55 => 24,  40 => 12,  34 => 9,  26 => 4,  21 => 1,);
+        return array (  84 => 31,  79 => 4,  67 => 32,  65 => 31,  52 => 21,  40 => 12,  34 => 9,  26 => 4,  21 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -113,8 +123,15 @@ class __TwigTemplate_3f071f8647b64fad9cb0107a5eb2a094dc8b30bb3411bbc3b1f071f12ec
             <li class=\"nav-item\">
                 <a class=\"nav-link\" href=\"{{ path_for('clientes-listar') }}\">Clientes</a>
             </li>
-            <li class=\"nav-item\">
-                <a class=\"nav-link disabled\" href=\"#\">Produtos</a>
+            <li class=\"nav-item dropdown\">
+                <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"dropProdutos\" 
+                role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
+                    Produtos
+                </a>
+                <div class=\"dropdown-menu\" aria-labelledby=\"dropProdutos\">
+                    <a class=\"dropdown-item disabled\" href=\"#\">Produtos</a>
+                    <a class=\"dropdown-item\" href=\" {{ path_for('produtos-categorias-listar') }}\">Categorias</a>
+                </div>
             </li>
             <li class=\"nav-item\">
                 <a class=\"nav-link disabled\" href=\"#\">Vendas</a>

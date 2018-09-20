@@ -3,12 +3,12 @@
 {% block title %}Desafio PHP - Listar Clientes{% endblock title %}
 
 {% block content %}
-<h2>Lista de clientes</h2>
-<a class="btn btn-primary" href="{{ path_for('clientes-cadastro') }}">Cadastrar Cliente</a>
+<h2>Lista de categorias de produtos</h2>
+<a class="btn btn-primary" href="{{ path_for('clientes-cadastro') }}">Cadastrar</a>
 <ul class="list-group">
-    {% if clientes|length > 0 %}
-        {% for cliente in clientes %}
-            <li class="list-group-item">{{ cliente.nome }}</li>
+    {% if categorias|length > 0 %}
+        {% for categoria in categorias %}
+            <li class="list-group-item">{{ categoria.nome }}</li>
         {% endfor %}
     {% else %}
         <li class="list-group-item">Não existem categorias cadastradas...</li>
