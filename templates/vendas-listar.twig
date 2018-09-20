@@ -1,0 +1,17 @@
+{% extends "base.twig" %}
+
+{% block title %}Desafio PHP - Listar Vendas{% endblock title %}
+
+{% block content %}
+<h2>Lista de Vendas</h2>
+<a class="btn btn-primary" href="{{ path_for('vendas-formescolhacliente') }}">Cadastrar Venda</a>
+<ul class="list-group">
+    {% if vendas|length > 0 %}
+        {% for venda in vendas %}
+            <li class="list-group-item">{{ venda.idvenda }}</li>
+        {% endfor %}
+    {% else %}
+        <li class="list-group-item">Não existem vendas cadastradas...</li>
+    {% endif %}
+</ul>
+{% endblock content %}

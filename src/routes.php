@@ -6,6 +6,7 @@ use App\Others\ModelResult;
 use App\Model\Cliente;
 use App\Model\Categoria;
 use App\Model\Produto;
+use App\Model\Venda;
 
 // Routes
 
@@ -78,6 +79,41 @@ $app->post('/produtos/cadastrar', function(Request $request, Response $response,
     $produto->saldo = $v['saldo'];
     $produto->save();
 
-    return $this->response->withRedirect($this->router->pathFor('produtos-listar')); 
-    //return $this->response->withJson($request->getParams());
+    return $this->response->withRedirect($this->router->pathFor('produtos-listar'));
 })->setName('produtos-cadastrar');
+
+$app->get('/vendas/listar', function(Request $request, Response $response, array $args) {
+    $allVendas = Venda::all();
+    $resultVenda = new ModelResult($allVendas);
+    $twigVar = ['vendas' => $resultVenda->toArray()];
+    return $this->view->render($response, 'vendas-listar.twig', $twigVar);
+})->setName('vendas-listar');
+
+$app->get('/vendas/formescolhacliente', function(Request $request, Response $response, array $args) {
+    $clientes = Cliente::all();
+    $modelResult = new ModelResult($clientes);
+    $twigVar = ['clientes' => $modelResult->toArray()];
+    return $this->view->render($response, 'vendas-formcadastro-escolhacliente.twig', $twigVar);
+})->setName('vendas-formescolhacliente');
+
+$app->get('/vendas/escolhacliente/{id_cliente}', function(Request $request, Response $response, array $args) {
+    $venda = new Venda();
+    $venda->data = new \DateTime('now');
+    $venda->idcliente = $args['id_cliente'];
+    $venda->status = 'A';
+    $venda->idusuario = 1;
+    $venda->save();
+    //var_dump($venda->idvenda);
+    //die();
+    return $this->response->withRedirect($this->router->pathFor(
+        'vendas-formescolhaprodutos', ['id_pedido' => $venda->idvenda ]
+    ));
+})->setName('vendas-escolhacliente');
+
+$app->get('/vendas/formescolhaproduto/{id_pedido}', function(Request $request, Response $response, array $args) {
+    return $this->view->render($response, 'vendas-formcadastro-escolhaprodutos.twig');
+})->setName('vendas-formescolhaprodutos');
+
+$app->post('/vendas/escolhaproduto', function(Request $request, Response $response, array $args) {
+
+})->setName('vendas-escolhaprodutos');

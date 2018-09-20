@@ -1,0 +1,22 @@
+{% extends "base.twig" %}
+
+{% block title %}Desafio PHP - Escolher Cliente da venda{% endblock title %}
+
+{% block content %}
+<h2>Escolher cliente da venda</h2>
+<ul class="list-group">
+    {% if clientes|length > 0 %}
+        {% for cliente in clientes %}
+            <li class="list-group-item">
+                {{ cliente.nome }}
+                <a href="{{ path_for('vendas-escolhacliente', { 'id_cliente' : cliente.idcliente}) }}" 
+                class="btn btn-primary float-right">
+                    Selecionar
+                </a>
+            </li>
+        {% endfor %}
+    {% else %}
+        <li class="list-group-item">Não existem categorias cadastradas...</li>
+    {% endif %}
+</ul>
+{% endblock content %}
