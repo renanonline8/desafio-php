@@ -46,7 +46,10 @@ class __TwigTemplate_3f071f8647b64fad9cb0107a5eb2a094dc8b30bb3411bbc3b1f071f12ec
                     Produtos
                 </a>
                 <div class=\"dropdown-menu\" aria-labelledby=\"dropProdutos\">
-                    <a class=\"dropdown-item disabled\" href=\"#\">Produtos</a>
+                    <a class=\"dropdown-item\" href=\"";
+        // line 20
+        echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("produtos-listar"), "html", null, true);
+        echo "\">Produtos</a>
                     <a class=\"dropdown-item\" href=\" ";
         // line 21
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("produtos-categorias-listar"), "html", null, true);
@@ -97,7 +100,7 @@ class __TwigTemplate_3f071f8647b64fad9cb0107a5eb2a094dc8b30bb3411bbc3b1f071f12ec
 
     public function getDebugInfo()
     {
-        return array (  84 => 31,  79 => 4,  67 => 32,  65 => 31,  52 => 21,  40 => 12,  34 => 9,  26 => 4,  21 => 1,);
+        return array (  87 => 31,  82 => 4,  70 => 32,  68 => 31,  55 => 21,  51 => 20,  40 => 12,  34 => 9,  26 => 4,  21 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -129,7 +132,7 @@ class __TwigTemplate_3f071f8647b64fad9cb0107a5eb2a094dc8b30bb3411bbc3b1f071f12ec
                     Produtos
                 </a>
                 <div class=\"dropdown-menu\" aria-labelledby=\"dropProdutos\">
-                    <a class=\"dropdown-item disabled\" href=\"#\">Produtos</a>
+                    <a class=\"dropdown-item\" href=\"{{ path_for('produtos-listar') }}\">Produtos</a>
                     <a class=\"dropdown-item\" href=\" {{ path_for('produtos-categorias-listar') }}\">Categorias</a>
                 </div>
             </li>

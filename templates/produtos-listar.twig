@@ -1,0 +1,17 @@
+{% extends "base.twig" %}
+
+{% block title %}Desafio PHP - Lista de Produtos{% endblock title %}
+
+{% block content %}
+<h2>Lista de Produtos</h2>
+<a class="btn btn-primary" href="{{ path_for('produtos-formcadastro') }}">Cadastrar</a>
+<ul class="list-group">
+    {% if produtos|length > 0 %}
+        {% for produto in produtos %}
+            <li class="list-group-item">{{ produto.produto }}</li>
+        {% endfor %}
+    {% else %}
+        <li class="list-group-item">Não existem produtos cadastrados...</li>
+    {% endif %}
+</ul>
+{% endblock content %}
